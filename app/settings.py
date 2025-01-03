@@ -1,7 +1,7 @@
-from dotenv import load_dotenv
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-@w=n-9it50iioy1!l%cz*a+n!3lq+9x#vg1=ps=h&p9v45cy+r
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['web-production-f31d.up.railway.app', '0.0.0.0', '127.0.0.1', ""]
@@ -125,13 +125,13 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'change-me'),
-        'USER': os.getenv('POSTGRES_USER', 'change-me'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'change-me'),
-        'HOST': os.getenv('POSTGRES_HOST', 'change-me'),
-        'PORT': os.getenv('POSTGRES_PORT', 'change-me'),
+        'NAME': os.getenv('POSTGRES_DB', 'bitnews'),
+        'USER': os.getenv('POSTGRES_USER', 'db_usuario'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password_user'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
         'OPTIONS': {
-            'sslmode': 'disable',  # Adicione esta linha
+            'sslmode': 'disable',  # Caso esteja desabilitado para o PostgreSQL
         },
     }
 }
