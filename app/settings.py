@@ -15,10 +15,10 @@ SECRET_KEY = 'django-insecure-@w=n-9it50iioy1!l%cz*a+n!3lq+9x#vg1=ps=h&p9v45cy+r
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['*', 'web-production-f31d.up.railway.app']
+ALLOWED_HOSTS = ['web-production-f31d.up.railway.app', '0.0.0.0', '127.0.0.1', ""]
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', 
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,6 +46,26 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/tmp/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 
 ROOT_URLCONF = 'app.urls'
 CORS_ALLOW_ALL_ORIGINS = True
@@ -92,6 +111,17 @@ WSGI_APPLICATION = 'app.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('POSTGRES_DB', 'change-me'),
+#         'USER': os.getenv('POSTGRES_USER', 'change-me'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'change-me'),
+#         'HOST': os.getenv('POSTGRES_HOST', 'change-me'),
+#         'PORT': os.getenv('POSTGRES_PORT', 'change-me'),
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -100,19 +130,12 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'change-me'),
         'HOST': os.getenv('POSTGRES_HOST', 'change-me'),
         'PORT': os.getenv('POSTGRES_PORT', 'change-me'),
+        'OPTIONS': {
+            'sslmode': 'disable',  # Adicione esta linha
+        },
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME'),  # Nome do banco de dados
-#         'USER': os.getenv('DB_USER'),  # Nome do usuário
-#         'PASSWORD': os.getenv('DB_PASSWORD'),  # Senha do banco de dados
-#         'HOST': os.getenv('DB_HOST'),  # Endereço do banco de dados
-#         'PORT': os.getenv('DB_PORT'),  # Porta do banco de dados
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
