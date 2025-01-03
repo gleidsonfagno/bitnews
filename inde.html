@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testando API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .category, .post {
+            margin-bottom: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .card {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .category img, .post img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testando API de Categorias e Posts</h1>
+    
+    <div id="categories" class="category"></div>
+    <div id="posts" class="post"></div>
+
+    <script>
+        async function fetchCategories() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/categories/');
+                if (!response.ok) throw new Error('Erro ao carregar categorias');
+                
+                const categories = await response.json();
+                displayCategories(categories);
+            } catch (error) {
+                document.getElementById('categories').innerHTML = `<p class="error">${error.message}</p>`;
+            }
+        }
+
+        async function fetchPosts() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/posts/');
+                if (!response.ok) throw new Error('Erro ao carregar posts');
+                
+                const posts = await response.json();
+                displayPosts(posts);
+            } catch (error) {
+                document.getElementById('posts').innerHTML = `<p class="error">${error.message}</p>`;
+            }
+        }
+
+        function displayCategories(categories) {
+            if (categories.length === 0) {
+                document.getElementById('categories').innerHTML = `<p class="error">Nenhuma categoria encontrada.</p>`;
+                return;
+            }
+
+            const categoriesHTML = categories.map(category => `
+                <div class="card">
+                    <img src="${category.category_image}" alt="${category.title}" />
+                    <h3>${category.title}</h3>
+                    <p>ID: ${category.id}</p>
+                </div>
+            `).join('');
+            
+            document.getElementById('categories').innerHTML = categoriesHTML;
+        }
+
+        function displayPosts(posts) {
+            if (posts.length === 0) {
+                document.getElementById('posts').innerHTML = `<p class="error">Nenhum post encontrado.</p>`;
+                return;
+            }
+
+            const postsHTML = posts.map(post => `
+                <div class="card">
+                    <img src="${post.image}" alt="${post.title}" />
+                    <h3>${post.title}</h3>
+                    <p>${post.resume}</p>
+                    <p><strong>Status:</strong> ${post.status}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('posts').innerHTML = postsHTML;
+        }
+
+        // Carregar categorias e posts
+        fetchCategories();
+        fetchPosts();
+    </script>
+</body>
+</html>

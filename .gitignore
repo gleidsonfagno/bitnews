@@ -2,6 +2,7 @@
 *.py[cod]
 __pycache__/
 
+index.html
 # Environments
 .env
 .venv
