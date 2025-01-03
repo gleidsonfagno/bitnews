@@ -3,6 +3,7 @@ boto3==1.35.90
 botocore==1.35.90
 Django==4.2.16
 django-cors-headers==4.6.0
+django-environ==0.11.2
 django-storages==1.14.4
 djangorestframework==3.15.2
 djangorestframework-simplejwt==5.3.1
@@ -19,4 +20,3 @@ six==1.17.0
 sqlparse==0.5.3
 tzdata==2024.2
 urllib3==1.26.6
-

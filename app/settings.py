@@ -17,7 +17,8 @@ SECRET_KEY = 'django-insecure-@w=n-9it50iioy1!l%cz*a+n!3lq+9x#vg1=ps=h&p9v45cy+r
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['*', 'web-production-f31d.up.railway.app']
+
 
 # Application definition
 
