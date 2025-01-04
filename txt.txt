@@ -1,0 +1,5 @@
+# PGDATABASE=railway
+# PGUSER=postgres
+# PGPASSWORD=gdDzQZbVSZaqgzwQSbbWQXXGlKwpILWo
+# PGHOST=viaduct.proxy.rlwy.net
+# PGPORT=13530
