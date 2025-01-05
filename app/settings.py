@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Segurança
 SECRET_KEY = 'django-insecure-zxzip6i@e+@y951_62xjjkvpvn&#-31cp7+rfbp=ta6i!cp3+@'
-DEBUG = False
-ALLOWED_HOSTS = ['https://bitnews-pi.vercel.app/', '.now.sh' '*']
+DEBUG = True
+ALLOWED_HOSTS = ['https://bitnews-pi.vercel.app/',  '*']
 
 # Aplicativos instalados
 INSTALLED_APPS = [

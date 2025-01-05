@@ -3,3 +3,13 @@
 # PGPASSWORD=gdDzQZbVSZaqgzwQSbbWQXXGlKwpILWo
 # PGHOST=viaduct.proxy.rlwy.net
 # PGPORT=13530
+// {
+//     "version": 2,
+//     "builds": [
+//       { "src": "app/wsgi.py", "use": "@vercel/python" }
+//     ],
+//     "routes": [
+//       { "src": "/(.*)", "dest": "app/wsgi.py" }
+//     ],
+//     "installCommand": "apt-get update && apt-get install -y libpq-dev && pip install -r requirements.txt"
+//   }
